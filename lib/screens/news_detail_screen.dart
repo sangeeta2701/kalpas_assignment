@@ -54,7 +54,7 @@ class NewsDetailScreen extends StatelessWidget {
                             CupertinoIcons.calendar,
                             color: gColor,
                           ),
-                          width8,
+                         
                           Text(
                             "Mon, 21 Dec 2020 14:57 GMT",
                             style: greyText,

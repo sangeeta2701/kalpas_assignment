@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:kalpas_assignment/screens/news_detail_screen.dart';
 import 'package:kalpas_assignment/utils/colors.dart';
 import 'package:kalpas_assignment/widgets/sizedbox.dart';
@@ -32,7 +33,7 @@ class _FavTabState extends State<FavTab> {
       },
       child: Container(
         constraints: BoxConstraints(
-          maxHeight: 145,
+          maxHeight: 145.h,
         ),
         decoration: BoxDecoration(
           color: wColor,
@@ -52,13 +53,13 @@ class _FavTabState extends State<FavTab> {
                     Text(
                       "Purus suspendisse adipiscing quam. Varius magnis in nisl.",
                       style: blackHeading,
-                      textAlign: TextAlign.justify,
+                      
                     ),
                     height4,
                     Text(
                       "At leo tellus ornare adipiscing adipiscing pharetra nisi ornare.",
                       style: blackSmallText,
-                      textAlign: TextAlign.justify,
+                      
                     ),
                     height4,
                     Row(
@@ -66,8 +67,9 @@ class _FavTabState extends State<FavTab> {
                         Icon(
                           CupertinoIcons.calendar,
                           color: gColor,
+                          size: 18.sp,
                         ),
-                        width8,
+                        
                         Text(
                           "Mon, 21 Dec 2020 14:57 GMT",
                           style: greyText,
