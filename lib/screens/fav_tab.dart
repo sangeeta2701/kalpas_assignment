@@ -92,6 +92,7 @@ import 'package:flutter/material.dart';
 import 'package:kalpas_assignment/Provider/favoriteProvider.dart';
 import 'package:provider/provider.dart';
 import '../utils/colors.dart';
+import '../utils/constants.dart';
 
 class FavTab extends StatelessWidget {
   @override
@@ -99,12 +100,17 @@ class FavTab extends StatelessWidget {
     final favorites = context.watch<FavoriteProvider>().favorites;
 
     return favorites.isEmpty
-        ? Center(child: Text("No Favorites Added"))
+        ? Center(child: Text("No Favorites Added",style: blackHeading,
+                                  ))
         : ListView.builder(
             itemCount: favorites.length,
             itemBuilder: (context, index) {
               var data = favorites[index];
               return ListTile(
+                tileColor: wColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
                 leading: data.urlToImage != null
                     ? Image.network(
                         data.urlToImage!,
@@ -112,8 +118,13 @@ class FavTab extends StatelessWidget {
                         fit: BoxFit.cover,
                       )
                     : null,
-                title: Text(data.title!),
-                subtitle: Text(data.description!),
+                title: Text(data.title!,style: blackHeading,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,),
+                subtitle: Text(data.description!,
+                style: blackSmallText,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,),
                 trailing: IconButton(
                   icon: Icon(Icons.remove_circle, color: rColor),
                   onPressed: () {
