@@ -32,49 +32,94 @@ class NewsListData {
     };
 }
 
+// class Article {
+//     Source source;
+//     String? author;
+//     String title;
+//     String description;
+//     String url;
+//     String? urlToImage;
+//     DateTime publishedAt;
+//     String content;
+
+//     Article({
+//         required this.source,
+//         required this.author,
+//         required this.title,
+//         required this.description,
+//         required this.url,
+//         required this.urlToImage,
+//         required this.publishedAt,
+//         required this.content,
+//     });
+
+//     factory Article.fromJson(Map<String, dynamic> json) => Article(
+//         source: Source.fromJson(json["source"]),
+//         author: json["author"],
+//         title: json["title"],
+//         description: json["description"],
+//         url: json["url"],
+//         urlToImage: json["urlToImage"],
+//         publishedAt: DateTime.parse(json["publishedAt"]),
+//         content: json["content"],
+//     );
+
+//     Map<String, dynamic> toJson() => {
+//         "source": source.toJson(),
+//         "author": author,
+//         "title": title,
+//         "description": description,
+//         "url": url,
+//         "urlToImage": urlToImage,
+//         "publishedAt": publishedAt.toIso8601String(),
+//         "content": content,
+//     };
+// }
+
 class Article {
-    Source source;
-    String? author;
-    String title;
-    String description;
-    String url;
-    String? urlToImage;
-    DateTime publishedAt;
-    String content;
+  Source source;
+  String? author;
+  String? title; // Made nullable
+  String? description; // Made nullable
+  String? url; // Made nullable
+  String? urlToImage; // Made nullable
+  DateTime? publishedAt; // Made nullable
+  String? content; // Made nullable
 
-    Article({
-        required this.source,
-        required this.author,
-        required this.title,
-        required this.description,
-        required this.url,
-        required this.urlToImage,
-        required this.publishedAt,
-        required this.content,
-    });
+  Article({
+    required this.source,
+    this.author,
+    this.title,
+    this.description,
+    this.url,
+    this.urlToImage,
+    this.publishedAt,
+    this.content,
+  });
 
-    factory Article.fromJson(Map<String, dynamic> json) => Article(
+  factory Article.fromJson(Map<String, dynamic> json) => Article(
         source: Source.fromJson(json["source"]),
-        author: json["author"],
-        title: json["title"],
-        description: json["description"],
-        url: json["url"],
-        urlToImage: json["urlToImage"],
-        publishedAt: DateTime.parse(json["publishedAt"]),
-        content: json["content"],
-    );
+        author: json["author"] as String?,
+        title: json["title"] ?? "No Title", 
+        description: json["description"] ?? "No Description", 
+        url: json["url"] ?? "", 
+        urlToImage: json["urlToImage"] as String?, 
+        publishedAt: json["publishedAt"] != null ? DateTime.parse(json["publishedAt"]) : null, 
+        content: json["content"] ?? "No Content", 
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "source": source.toJson(),
         "author": author,
         "title": title,
         "description": description,
         "url": url,
         "urlToImage": urlToImage,
-        "publishedAt": publishedAt.toIso8601String(),
+        "publishedAt": publishedAt?.toIso8601String(),
         "content": content,
-    };
+      };
 }
+
 
 class Source {
     String? id;

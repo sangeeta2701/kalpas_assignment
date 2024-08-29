@@ -112,8 +112,8 @@ class FavTab extends StatelessWidget {
                         fit: BoxFit.cover,
                       )
                     : null,
-                title: Text(data.title),
-                subtitle: Text(data.description),
+                title: Text(data.title!),
+                subtitle: Text(data.description!),
                 trailing: IconButton(
                   icon: Icon(Icons.remove_circle, color: rColor),
                   onPressed: () {

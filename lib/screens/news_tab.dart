@@ -31,7 +31,7 @@ class _NewsTabState extends State<NewsTab> {
   List<Article> newsList = [];
   Future<void> _getsNewsList() async {
     var url =
-        "https://newsapi.org/v2/everything?q=tesla&from=2024-07-27&sortBy=publishedAt&apiKey=7a5ea62eba80483eb5c78d6508c8f1f4";
+        "https://newsapi.org/v2/everything?q=tesla&from=2024-07-29&sortBy=publishedAt&apiKey=7a5ea62eba80483eb5c78d6508c8f1f4";
     // "https://newsapi.org/v2/everything?q=tesla&from=2024-07-27&sortBy=publishedAt&apiKey=00a3bb0bad3c4dbbb7f644fde89befe2";
     var response = await http.get(Uri.parse(url));
     print(response.body);
@@ -56,7 +56,7 @@ class _NewsTabState extends State<NewsTab> {
             child: CircularProgressIndicator(),
           )
         : ListView.builder(
-            itemCount: newsList.length,
+            itemCount: 1,
             itemBuilder: (context, index) {
               var data = newsList[index];
               var isFavorite =
@@ -102,10 +102,11 @@ class _NewsTabState extends State<NewsTab> {
                             height: 140,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                image: DecorationImage(
-                                    image: NetworkImage(data.urlToImage!),
-                                    fit: BoxFit.cover)),
-                            // child: Image.network(data.urlToImage!,fit: BoxFit.cover,),
+                                // image: DecorationImage(
+                                //     // image:data.urlToImage?.isEmpty? AssetImage(assetName): NetworkImage(data.urlToImage!),
+                                //     fit: BoxFit.cover),
+                                    ),
+                            child:data.urlToImage!.isEmpty?Image.asset("assets/images/img1.png"): Image.network(data.urlToImage!,fit: BoxFit.cover,),
                           ),
                           width12,
                           Expanded(
@@ -114,7 +115,7 @@ class _NewsTabState extends State<NewsTab> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  data.title,
+                                  data.title!,
                                   style: blackHeading,
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
@@ -122,7 +123,7 @@ class _NewsTabState extends State<NewsTab> {
                                 ),
                                 height4,
                                 Text(
-                                  data.description,
+                                  data.description!,
                                   style: blackSmallText,
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
